@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Final</title>
+    <script scr="script.js" defer> </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+    //Objeto usuário
+    // posteriormente colocar data de nascimento, CPF e senha
+
+    function Usuario(nome, idade, email) {
+        this.nome = nome;
+        this.idade = idade;
+        this.email = email;
+        this.extrato = [];
+
+
+
+        //Método para adicionar operações ao extrato
+        this.adicionarOperacao = function (operacao) {
+            this.extrato.push(operacao);
+        };
+
+
+    }
+
+    // para exibir os dados do usuário
+    function exibirDetalhes() {
+        console.log(`Nome: ${nome}\nIdade: ${idade}\nE-mail: ${email}`);
+    }
+
+
+
+
+    //Criando um usuário dinamicamente (entradas do usuario)
+    let nome = prompt("Preencha seu cadastro\n\nDigite seu nome:");
+    let idade = parseInt(prompt("Digite a sua idade"));
+    let email = prompt("Digite seu e-mail");
+
+    //Criando o objeto usuário
+    let usuario = new Usuario(nome, idade, email);
+
+    let valor = prompt("Informe o valor que deseja converter");
+
+    class ValorAconverter {
+        constructor(valor) {
+            this.valor = parseFloat(valor.replace(",", "."));
+        }
+
+
+        impostoIOF() {
+            let desconto = this.valor * 0.011
+            this.valor = this.valor - desconto
+            valor = this.valor.toFixed(2)
+        }
+    }
+
+
+    console.log(`O valor informado foi: ${valor}`)
+    let valorAConverter1 = new ValorAconverter(valor);
+
+    valorAConverter1.impostoIOF();
+    console.log(`O valor a ser convertido com descontos é: ${valor}`)
+
+
+    //Função para exibir o menu númerico
+    function exibirMenu() {
+        console.log(" <1> Dólar Americano\n <2> Euro\n <3> Libra Esterlina\n <4> Rand Sul-Africano\n <5> Extrato ");
+
+    }
+
+
+    //Função para processar a escolha do usuário
+    function processarEscolha(escolha) {
+
+        switch (escolha) {
+            case 1:
+                console.log("Converter para DÓLAR AMERICANO");
+                converterParaDolar();
+                break;
+
+            case 2:
+                console.log("Converter para EURO");
+                converterParaEuro();
+                break;
+            case 3:
+                console.log("Converter para LIBRA ESTERLINA");
+                converterParaLibraEstelina();
+                break;
+            case 4:
+                console.log("Converter para RAND SUL-AFRICANO");
+                converterParaRandAfricano();
+                break;
+            case 5:
+                console.log("Exibindo Extrato...");
+                exibirDetalhes();
+                console.log(`${usuario.extrato}\n`);
+                console.log("Saindo do sistema!...");
+                break;
+            default:
+                console.log("Opção inválida. Tente novamente");
+        }
+    }
+
+
+
+    function converterParaDolar() {
+        //console.log("Esse é o valor", valor)  --> quando coloca isso o valor vem com o valor a ser convertido com desconto
+        const taxaDolar = 4.94
+        let convertDolar = valor / taxaDolar
+        let dolar = convertDolar.toFixed(2)
+        console.log("valor em Dólar", dolar)
+        usuario.adicionarOperacao(`Conversão para Dólar: ${valor} -> ${dolar}\n`);
+
+
+    }
+
+    function converterParaEuro() {
+        //console.log("Esse é o valor", valor)  --> quando coloca isso o valor vem com o valor a ser convertido com desconto
+        const taxaEuro = 5.39
+        let convertEuro = valor / taxaEuro
+        let euro = convertEuro.toFixed(2)
+        console.log("valor em Euro", euro)
+        usuario.adicionarOperacao(`Conversão para Euro: ${valor} -> ${euro}\n`);
+
+    }
+
+    function converterParaLibraEstelina() {
+        //console.log("Esse é o valor", valor)  --> quando coloca isso o valor vem com o valor a ser convertido com desconto
+        const taxaLibra = 6.34
+        let convertLibra = valor / taxaLibra
+        let libra = convertLibra.toFixed(2)
+        console.log("valor em Libra-Esterlina", libra)
+        usuario.adicionarOperacao(`Conversão para Libra-Esterlina: ${valor} -> ${libra}\n`);
+
+    }
+
+    function converterParaRandAfricano() {
+        //console.log("Esse é o valor", valor)  --> quando coloca isso o valor vem com o valor a ser convertido com desconto
+        const taxaRand = 0.26
+        let convertRand = valor / taxaRand
+        let rand = convertRand.toFixed(2)
+        console.log("valor em Rand Sul-Africano", rand)
+        usuario.adicionarOperacao(`Conversão para Rand Sul-Africano: ${valor} -> ${rand}\n`);
+
+    }
+
+
+
+    // Loop para exibir o menu e processar a escolha do usuário
+    let escolha = 0;
+
+    do {
+        exibirMenu();
+        escolha = parseInt(prompt("Digite o número da opção desejada:"));
+
+        // Verifica se a escolha é um número válido
+        if (isNaN(escolha)) {
+            console.log("Por favor, digite um número válido");
+            continue;
+        }
+
+        processarEscolha(escolha);
+    } while (escolha !== 5);
+
+
+
+</script>

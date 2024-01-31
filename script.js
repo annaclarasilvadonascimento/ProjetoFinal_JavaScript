@@ -11,8 +11,8 @@ let usuario = new Usuario(nome, idade, email);
 let valor = prompt("Informe o valor que deseja converter");
 
 // Criando o objeto ValorAconverter
-let valorAConverter1 = new ValorAconverter(valor);
-valorAConverter1.impostoIOF();
+let valorAConverter = new ValorAconverter(valor);
+valorAConverter.impostoIOF();
 
 // Loop para exibir o menu e processar a escolha do usuário
 let escolha = 0;

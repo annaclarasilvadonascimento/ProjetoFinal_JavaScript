@@ -1,48 +1,29 @@
 
 
-
 class ValorAconverter {
     constructor(valor) {
         this.valor = parseFloat(valor.replace(",", "."));
     }
 
     impostoIOF() {
-        let desconto = this.valor * 0.011;
-        this.valor = this.valor - desconto;
-        valor = this.valor.toFixed(2);
+        this.descontoIOF = this.valor * 0.011;
+        this.valor = this.valor - this.descontoIOF;
+        this.valor = parseFloat(this.valor.toFixed(2));
     }
 }
 
-function converterParaDolar(valor, usuario) {
-    const taxaDolar = 4.94;
-    let convertDolar = valor / taxaDolar;
-    let dolar = convertDolar.toFixed(2);
-    console.log("valor em Dólar", dolar);
-    usuario.adicionarOperacao(`Conversão para Dólar: ${valor} -> ${dolar}\n`);
-}
+const taxasConversao = {
+    'Dólar Americano': 4.94,
+    'Euro': 5.39,
+    'Libra Esterlina': 6.34,
+    'Rand Sul-Africano': 0.26
+};
 
-function converterParaEuro(valor, usuario) {
-    const taxaEuro = 5.39;
-    let convertEuro = valor / taxaEuro;
-    let euro = convertEuro.toFixed(2);
-    console.log("valor em Euro", euro);
-    usuario.adicionarOperacao(`Conversão para Euro: ${valor} -> ${euro}\n`);
-}
-
-function converterParaLibraEstelina(valor, usuario) {
-    const taxaLibra = 6.34;
-    let convertLibra = valor / taxaLibra;
-    let libra = convertLibra.toFixed(2);
-    console.log("valor em Libra-Esterlina", libra);
-    usuario.adicionarOperacao(`Conversão para Libra-Esterlina: ${valor} -> ${libra}\n`);
-}
-
-function converterParaRandAfricano(valor, usuario) {
-    const taxaRand = 0.26;
-    let convertRand = valor / taxaRand;
-    let rand = convertRand.toFixed(2);
-    console.log("valor em Rand Sul-Africano", rand);
-    usuario.adicionarOperacao(`Conversão para Rand Sul-Africano: ${valor} -> ${rand}\n`);
+function converterMoeda(valor, taxa, simbolo) {
+    const convertido = valor / taxa;
+    const descontoIOF = valor * 0.011;
+    const valorComDesconto = valor - descontoIOF;
+    return `${simbolo} ${convertido.toFixed(2)} (Desconto: R$ ${descontoIOF.toFixed(2)}, Valor com Desconto: R$ ${valorComDesconto.toFixed(2)})`;
 }
 
 function exibirMenu() {
@@ -52,20 +33,15 @@ function exibirMenu() {
 function processarEscolha(escolha, valor, usuario) {
     switch (escolha) {
         case 1:
-            console.log("Converter para DÓLAR AMERICANO");
-            converterParaDolar(valor, usuario);
-            break;
         case 2:
-            console.log("Converter para EURO");
-            converterParaEuro(valor, usuario);
-            break;
         case 3:
-            console.log("Converter para LIBRA ESTERLINA");
-            converterParaLibraEstelina(valor, usuario);
-            break;
         case 4:
-            console.log("Converter para RAND SUL-AFRICANO");
-            converterParaRandAfricano(valor, usuario);
+            const moeda = Object.keys(taxasConversao)[escolha - 1];
+            const taxa = taxasConversao[moeda];
+            const valorConvertido = converterMoeda(valor, taxa, ['$', '€', '£', 'R'][escolha - 1]);
+            console.log(`Converter para ${moeda}`);
+            console.log("Valor convertido:", valorConvertido);
+            usuario.adicionarOperacao(`Conversão para ${moeda}: R$ ${valor} -> ${valorConvertido}\n`);
             break;
         case 5:
             console.log("Exibindo Extrato...");

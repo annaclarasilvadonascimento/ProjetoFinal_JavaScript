@@ -31,74 +31,73 @@ body {
 /* HEADER */
 
 header {
-    padding: 1.5rem 6%;
-    background-color: var(--black-green);
-    color: var(--green-ligth);
-    display: flex;
-    justify-content: space-between;
-    border-bottom: solid 0.1px;
-    border-color: var(--green-ligth);
-    position: fixed; 
-    top: 0; 
-    width: 100%; 
-    z-index: 99999;
+  padding: 1.5rem 6%;
+  background-color: var(--black-green);
+  color: var(--green-ligth);
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 0.1px;
+  border-color: var(--green-ligth);
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
+  z-index: 99999;
 }
 
 .containner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-    font-family: var(--font-primary);
-    font-size: 32px;
-    color: var(--green-ligth);
-    align-items: center;
-    display: flex;
-    justify-content: space-around;
-    margin-right: 60px;
-   
+  font-family: var(--font-primary);
+  font-size: 32px;
+  color: var(--green-ligth);
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin-right: 60px;
 }
 .logo img {
   width: 32px;
   margin-right: -5px;
 }
 .menu-rigth {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .menu-item {
-    display: flex;
-    justify-content: left;
-    list-style: none;
-    gap: 30px;
-    color: var(--green-ligth);
+  display: flex;
+  justify-content: left;
+  list-style: none;
+  gap: 30px;
+  color: var(--green-ligth);
 }
 .menu-link {
-    text-decoration: none;
-    color: var(--green-ligth);
-    cursor: pointer;
+  text-decoration: none;
+  color: var(--green-ligth);
+  cursor: pointer;
+  padding: 10px;
 }
 .menu-link:hover {
-   padding: 10px;
-    background: var(--green-transparent);
-    border-radius: 15px;
+  padding: 10px;
+  background: var(--green-transparent);
+  border-radius: 15px;
 }
 
 .menu-btn{
-    background-color: var(--green-ligth);
-    padding: 8px 20px;
-    border: none;
-    border-radius: 15px;
-    text-decoration: none;
-    color: var(--black-green);
-    cursor: pointer;
-
+  background-color: var(--green-ligth);
+  padding: 8px 20px;
+  border: none;
+  border-radius: 15px;
+  text-decoration: none;
+  color: var(--black-green);
+  cursor: pointer;
 }
 .menu-btn:hover {
-    filter: brightness(1.3);
+  filter: brightness(1.3);
 }
 
 /* MAIN */

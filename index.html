@@ -8,24 +8,24 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <link href="https://fonts.cdnfonts.com/css/wise" rel="stylesheet">
     <link rel="favicon icon" href="./assets/img/wiseFavion.ico">
-    <script src="usuario1.js" defer></script>
-    <script src="conversoes1.js" defer></script>
-    <script src="scripti.js" defer></script>
+
+    <script src="./assets/js/menu.js" defer></script>
 </head>
 <header>
-    <div class="containner"><!----------Barra de Navegação-------------->
+    <div class="menu-desktop">
+        <div class="menu-left"><!----------Barra de Navegação-------------->
         
-        <div class="logo">
-            <img src="./assets/img/logoWise.png" alt="Logo da CoderWise">
-            <i>CODERWISE</i>
-        </div>
-        
-            <nav>
-                <ul class="menu-item">
-                    <li><a class="menu-btn" class="btn-nav"  href="#">Pessoal</a></li>
-                    <li><a class="menu-link" href="#">Empresa</a></li>
-                </ul>
-            </nav>
+            <div class="logo">
+                <img src="./assets/img/logoWise.png" alt="Logo da CoderWise">
+                <i>CODERWISE</i>
+            </div>
+            
+                <nav>
+                    <ul class="menu-item">
+                        <li><a class="menu-btn" class="btn-nav"  href="#">Pessoal</a></li>
+                        <li><a class="menu-link" href="#">Empresa</a></li>
+                    </ul>
+                </nav>
         </div>
         <div class="menu-rigth">
             <nav>
@@ -34,8 +34,25 @@
                     <li><a class="menu-btn" href="">Criar conta</a></li>
                 </ul>
             </nav>
-        </div>
-    </div> <!------------Final Container barra de navegação------------->
+            <div class="btn-sandwich">
+                <button onclick="menuShow()">
+                    <img class="icon" src="./assets/img/menu_green.svg" alt="botão de abrir menu">
+                </button>
+            </div>
+        </div> <!------------Final Container barra de navegação------------->
+    </div>
+
+    <div class="mobile-menu">
+            <nav>
+                <ul>
+                    <li><a class="menu-btn"  href="#">Pessoal</a></li>
+                    <li><a class="" href="#">Empresa</a></li>
+                    <li><a class="login-button" href="">Entrar</a></li>
+                    <li><a class="menu-btn" href="">Criar conta</a></li>
+                </ul>
+            </nav>
+
+    </div>
 </header>
 
 <main>

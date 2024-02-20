@@ -1,61 +1,103 @@
-body{
-    font-family: Arial, sans-serif;
-    background-color: #16330014;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    color: #121511
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-form {
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
     width: 100%;
-    max-width: 400px;
+    height: 100vh;
+    background-image: url('./assets/img/backgound/fundo5.png');
+    background-size: cover ;
+    /*background-color: 
+    #121511;;*/
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: auto; 
-    margin-top: 250px;
-    margin-bottom: 250px;
+    border-radius: 7px;
+    padding: 40px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    gap: 5px
 }
 
-/* Espaço entre os elementos as entradas do formulário*/
-label {
-    display:block;
-    margin-bottom: 8px;
+.areaLogin img {
+    width: 420px;
 }
 
-/* Tamanho da caixa de texto do formulario*/
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 16px;
-    box-sizing: border-box;
-    border-radius: 10px
+.loginForm h1 {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    font-size: 2.3em;
 }
 
-button {
-    width: 100%;
-    background-color: #9FE870;
-    color: #121511;
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.loginForm p {
+    display: inline-block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
 }
 
-button:active {
-    background-color: #2F5711; /* Cor alternativa quando o botão é clicado */
+.loginForm input {
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    border-radius: 4px;
+    transition: all linear 160ms;
+    outline: none;
+}
+
+
+.loginForm input:focus {
+    border: 1px solid#454745;
+}
+
+.loginForm label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.formLogin a {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #555;
+    transition: all linear 160ms;
+}
+
+.formLogin a:hover {
+    color:  #163300;
+}
+
+.btn {
+    background-color:  #163300;
     color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border: none !important;
+    transition: all linear 160ms;
+    cursor: pointer;
+    margin: 0 !important;
+
 }
 
-a{
-    text-align: center;
-    color: #2F5711;
-    
+.btn:hover {
+    transform: scale(1.05);
+    background-color: 
+    #9FE870;
+
 }

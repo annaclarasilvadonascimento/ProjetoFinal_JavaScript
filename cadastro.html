@@ -5,42 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.cdnfonts.com/css/wise" rel="stylesheet">
     <link rel="favicon icon" href="./assets/img/wiseFavion.ico">
-    <link rel="stylesheet" href="./assets/css/cadastro.css"> 
-    <title>Crie Sua Conta</title>
+    <!--<link rel="stylesheet" href="./assets/css/cadastro.css"> -->
+    <link rel="stylesheet" href=".\assets\css\cadastro.css"> 
+    <title>Cadastre-se</title>
 </head>
 <body>
+    <div class="page">
 
-    <form action="/processar-formulario" method="post">
-        
+    <form method="post" class="formRegistration" id="registerForm">
         <h1 >Cadastre-se</h1>
-
-
+        <p>Digite os seus dados cadastrais no campo abaixo.</p>
         <!-- Campo de Nome-->
-        <div>
             <label for="nome">Nome:</label>
             <input type="nome" id="nome" name="nome" required>
-        </div>
-
         <!-- Campo para idade -->
-        <div>
             <label for="idade">Idade:</label>
             <input type="idade" id="idade" name="idade" required>
-        </div>
         <!-- Campo de E-mail -->
-        <div>
-        <label for="email">Seu e-mail:</label>
-        <input type="email" id="email" name="email" required>
-        </div>
-
+            <label for="email">Seu e-mail:</label>
+            <input type="email" id="email" name="email" required>
         <!-- Campo de Senha -->
-        <div>
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
-        </div>
-
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
         <!-- Botão de Envio -->
-        <button type="submit"><b>Criar Conta</b></button>
+        <input type="submit" value="Cadastrar" class="btn">
+        <div id = "mensagem">
+            <a href="login.html">Já tem conta? Faça login</a>
+        </div>
+        
     </form>
+</div>
+
+   
     
+    <script src=".\assets\js\cadastro.js"></script>
 </body>
 </html>

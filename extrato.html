@@ -3,39 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href=".\assets\css\extrato.css">
-    <script type="module" src=".\assets\js\extrato.js"></script>
-    <title>Conversor de Moeda</title>
+    <title>Extrato</title>
+    <link rel="stylesheet" href="extrato.css">
+    
+    
+    <!-- Inclua seus arquivos CSS e JavaScript aqui -->
 </head>
 <body>
-    <div class="conversor">
-        <h2>Conversor de Moeda</h2>
-        <label for="valor">Valor:</label>
-        <input type="text" id="valor" placeholder="Insira o valor">
-        
-        <label for="moeda">Moeda:</label>
-        <select id="moeda">
-            <option value="Dólar Americano">Dólar Americano (USD)</option>
-            <option value ="Dólar Australiano"> Dólar Australiano (AUD)</option>
-            <option value="Euro">Euro (EUR)</option>
-            <option value ="Libra Egípcia"> Libra Egípcia (EGP)</option>
-            <option value ="Libra Esterlina"> Libra Esterlina (GBP)</option>
-            <option value ="Peso Colombiano"> Peso Colombiano (COP)</option>
-            <option value ="Rand Sul-Africano"> Rand Sul-Africano (ZAR)</option>
-            <option value ="Rupia Indiana"> Rupia Indiana (INR)</option> 
-        </select>
-        
-        <button id="botaoConverter">Converter</button>
-        
-        <div id="resultado"></div>
-    </div>
 
-    <div class="extrato">
-        <h2>Extrato de Conversões</h2>
-        <ul id="extrato"></ul>
-    </div>
+<h1>Extrato</h1>
 
-    <script type="module" src=".\assets\js\cadastro.js"></script>
-    <script src=".\assets\js\conversoes.js"></script>
+<ul id="extrato">
+    <!-- O extrato será exibido aqui dinamicamente pelo JavaScript -->
+</ul>
+
+<ul id="saldos">
+    <!-- O extrato será exibido aqui dinamicamente pelo JavaScript -->
+</ul>
+
+<!-- Inclua seus outros elementos HTML, como formulários e botões -->
+
+<!--<script src="main.js"></script>-->
+<!-- Inclua seus outros scripts JavaScript -->
+<script type="module" src="extrato.js"></script>
+
 </body>
 </html>
+

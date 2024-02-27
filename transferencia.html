@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src ="extrato.js"></script>
+    <script src="transferencia.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Simulação de Transferência</title>
+</head>
+<body>
+    <h1>Simulação de Transferência</h1>
+
+    <label for="destinatario">E-mail do Destinatário:</label>
+    <input type="text" id="destinatario" placeholder="Digite o e-mail do destinatário">
+
+    <label for="valor">Valor a ser Transferido:</label>
+    <input type="number" id="valor"  placeholder="Digite o valor a ser transferido" min="0" step="0.01">
+
+    <label for="moeda">Moeda:</label>
+    <select id="moeda">
+        <option value="AED-BRL">Valor de compra Dirham dos Emirados</option>
+        <option value="USD-BRL">Valor de compra do Dolar</option>
+        <option value="AUD-BRL">Valor de compra do Dolar</option>
+        <option value="EUR-BRL">Valor de compra do Euro</option>
+        <option value="GBP-BRL">Valor de compra Libra Esterlina</option>
+        <option value="JPY-BRL">Valor de compra Yene Japonês</option>
+        <option value="ZAR-BRL">Valor de compra Rand Sul-Africano</option>
+        <option value="INR-BRL">Valor de compra Rupia Indiana</option>
+        <!-- Adicione mais opções de moeda conforme necessário -->
+    </select>
+
+    <p id="saldos">Saldos:</p>
+</p>    <button onclick="realizarTransferencia()">Transferir</button>
+
+    
+</body>
+</html>

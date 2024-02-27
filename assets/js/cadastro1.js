@@ -9,20 +9,18 @@ function cadastrarUsuario() {
 
     if (idade < 18) {
         mensagemErro.innerHTML = "Idade não suficiente. Você deve ter pelo menos 18 anos. <a href=' index.html'>Clique aqui</a>";
+        document.getElementById("nome").disabled = true;
+        document.getElementById("idade").disabled = true;
+        document.getElementById("email").disabled = true;
+        document.getElementById("senha").disabled = true;
         return;
     }
 
-        //document.getElementById("nome").disabled = true;
-        //document.getElementById("idade").disabled = true;
-        //document.getElementById("email").disabled = true;
-        //document.getElementById("senha").disabled = true;
-
-       
-
+        
     let usuariosCadastrados = JSON.parse(localStorage.getItem('usuarios')) || [];
 
     // Verifica se o usuário já está cadastrado
-    if (usuariosCadastrados.some(usuario => usuario.nome === nome)) {
+    if (usuariosCadastrados.some(usuario => usuario.email === email)) {
         mensagemErro.innerHTML = "Usuário já cadastrado.";
         return;
     }
@@ -40,10 +38,8 @@ function cadastrarUsuario() {
 
 // Adiciona o ouvinte de evento submit
 document.getElementById("registerForm").addEventListener("submit", function(event) {
-    //event.preventDefault(); // Evitar o envio tradicional do formulário
+    event.preventDefault(); // Evitar o envio tradicional do formulário
 
     // Chama a função cadastrarUsuario dentro do evento submit
     cadastrarUsuario();
 });
-
-

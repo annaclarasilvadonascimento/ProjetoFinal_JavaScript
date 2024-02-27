@@ -1,4 +1,4 @@
-body {
+/*body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -73,4 +73,47 @@ button:hover {
 
 #extrato li:last-child {
     margin-bottom: 0;
+}*/
+
+/* styles.css (ou qualquer nome que você preferir) */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
 }
+
+h1 {
+    color: #333;
+}
+
+ul#extrato {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+/* Estilize a lista de extrato */
+#extrato {
+  list-style-type: none; /* Remova os marcadores padrão da lista */
+  padding: 0; /* Remova o espaçamento interno da lista */
+}
+
+/* Estilize os itens da lista - TIRAR ISSO DEPOIS */
+#extrato li {
+  margin-bottom: 10px; /* Adicione um espaçamento inferior entre os itens */
+  padding-left: 20px; /* Adicione um espaçamento à esquerda para acomodar o ícone */
+  background-repeat: no-repeat; /* Evite que a imagem de fundo se repita */
+  background-position: left center; /* Posicione a imagem à esquerda no centro vertical */
+}
+
+/* Estilos adicionais conforme necessário */
+
+

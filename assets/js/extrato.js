@@ -1,44 +1,102 @@
-import {Extrato} from './classeExtrato.js';
+// Extrato.js
 
+ class Extrato {
+    constructor() {
+        this.transacoes = [];
+        this.saldos = {};
+    }
+
+    adicionarTransacao(descricao, valor, moeda, convertido, desconto, valorComDesconto, data) {
+        const transacao = {
+            descricao,
+            valor,
+            moeda,
+            convertido,
+            desconto,
+            valorComDesconto,
+            data,
+        };
+
+        // Adiciona a transação no array de transações
+        this.transacoes.push(transacao);
+
+        // Atualiza o saldo da moeda
+        if (!this.saldos.hasOwnProperty(moeda)) {
+            this.saldos[moeda] = 0;
+        }
+        this.saldos[moeda] += Number(transacao.convertido);
+
+        // Atualiza o extrato na interface
+        atualizarExtrato();
+    }
+
+    gerarExtrato() {
+        return this.transacoes;
+    }
+}
 
 const extrato = new Extrato();
 
-
-function adicionarTransacaoNoExtrato(descricao, valor, moeda, convertido, desconto, valorComDesconto) {
-    extrato.adicionarTransacao(descricao, valor, moeda, convertido, desconto, valorComDesconto);
-    atualizarExtrato();
+function adicionarTransacaoNoExtrato(descricao, valor, moeda, convertido, desconto, valorComDesconto, data) {
+    extrato.adicionarTransacao(descricao, valor, moeda, convertido, desconto, valorComDesconto, data);
 }
 
 function atualizarExtrato() {
     const extratoElement = document.getElementById('extrato');
-    extratoElement.innerHTML = '';
+    if (extratoElement) {
+        extratoElement.innerHTML = '';
+    
 
     extrato.gerarExtrato().forEach((transacao) => {
         const linha = document.createElement('li');
         linha.textContent = `${transacao.descricao}: ${transacao.valor} ${transacao.moeda} - Convertido: ${transacao.convertido}, Desconto: R$ ${transacao.desconto}, Valor com Desconto: R$ ${transacao.valorComDesconto} - ${transacao.data}`;
+        //linha.style.listStyleImage = 'url(./convert-icon.png)';
+        //linha.style.backgroundSize = '1px';
         extratoElement.appendChild(linha);
+       
     });
 }
 
-// Adicione este evento no seu código existente
-document.getElementById('botaoConverter').addEventListener('click', () => {
-    const valorElement = document.getElementById('valor');
-    const moedaElement = document.getElementById('moeda');
+    // Atualiza os saldos
+    atualizarSaldos();
+}
 
-    const valor = Number(valorElement.value) || 0;
-    const moeda = moedaElement.options[moedaElement.selectedIndex].text;
+function atualizarSaldos() {
+    const saldosElement = document.getElementById('saldos');
+    //if (!saldosElement) {
+    //    console.error('Elemento com ID "saldos" não encontrado.');
+    //    return;
+    //} TIRAR - ISSO É SÓ VALIDAÇÃO DE TESTE
 
-    if (!taxasConversao.hasOwnProperty(moeda)) {
-        resultadoElement.textContent = 'Moeda não encontrada nas taxas de conversão.';
-        return;
+    saldosElement.innerHTML = '';
+    for (const moeda in extrato.saldos) {
+        const saldoLinha = document.createElement('li');
+        saldoLinha.textContent = `Saldo ${moeda}: ${extrato.saldos[moeda].toFixed(2)}`;
+        saldosElement.appendChild(saldoLinha);
     }
+    //nova linha que inclui para fazer a pagina de transferência
+    localStorage.setItem('saldos', JSON.stringify(extrato.saldos));
+}
 
-    const { convertido, desconto, valorComDesconto } = realizarConversao(valor, moeda);
+document.addEventListener('DOMContentLoaded', () => {
+    // Carrega as transações do localStorage
+    const transacoesDoLocalStorage = JSON.parse(localStorage.getItem('transacoes')) || [];
 
-    // Adiciona a transação ao extrato
-    adicionarTransacaoNoExtrato('Conversão', valor, moeda, convertido, desconto, valorComDesconto);
+    // Adiciona as transações do localStorage ao extrato
+    transacoesDoLocalStorage.forEach((transacao) => {
+        extrato.adicionarTransacao(
+            transacao.descricao,
+            transacao.valor,
+            transacao.moeda,
+            transacao.convertido,
+            transacao.desconto,
+            transacao.valorComDesconto,
+            transacao.data
+        );
+    });
 
-    // Atualiza o extrato na interface
+    // Atualiza o extrato ao carregar a página
     atualizarExtrato();
 });
- 
+
+

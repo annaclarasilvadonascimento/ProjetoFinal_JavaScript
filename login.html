@@ -8,10 +8,14 @@
     <link rel="favicon icon" href="./assets/img/wiseFavion.ico">
     <title>Login</title>
     <!--<link rel="stylesheet" href="./assets/css/login.css"> -->
-    <link rel="stylesheet" href=".\assets\css\login.css"> 
+    <link rel="stylesheet" href="login.css"> 
    
 </head>
 <body>
+
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+    </div>
 
     <div class="page">
     <form method="POST" class="loginForm" id="formLogin">
@@ -27,9 +31,11 @@
         <input type="submit" value="Acessar" class="btn"></input>
         <a href="cadastro.html"> Criar Conta</a>
     </form>
+
+    <p id="mensagemLogin"></p>
 </div>
 
-    <script src=".\assets\js\login.js"></script>
+    <script src="login.js"></script>
     
 </body>
 </html>

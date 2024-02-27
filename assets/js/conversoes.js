@@ -1,24 +1,4 @@
 
-function converterMoeda() {
-    const valorElement = document.getElementById('valor');
-    const moedaElement = document.getElementById('moeda');
-    const resultadoElement = document.getElementById('resultado');
-
-    const valor = Number(valorElement.value) || 0;
-    const moeda = moedaElement.options[moedaElement.selectedIndex].text;
-
-    if (!taxasConversao.hasOwnProperty(moeda)) {
-        resultadoElement.textContent = 'Moeda não encontrada nas taxas de conversão.';
-        return;
-    }
-
-    const { convertido, desconto, valorComDesconto } = realizarConversao(valor, moeda);
-
-    resultadoElement.textContent = `${convertido} (Desconto: R$ ${desconto}, Valor com Desconto: R$ ${valorComDesconto})`;
-}
-
-document.getElementById('botaoConverter').addEventListener('click', converterMoeda);
-
 class ValorAconverter {
     constructor(valor) {
         this.valor = Number(valor) || 0;
@@ -31,24 +11,56 @@ class ValorAconverter {
     }
 }
 
+// Mapear o nome da moeda para o código correspondente na API
+function obterCodigoDaMoeda(moeda) {
+    const mapaMoedas = {
+        'AED-BRL': 'AED',
+        'USD-BRL': 'USD',
+        'AUD-BRL': 'AUD',
+        'EUR-BRL': 'EUR',
+        'GBP-BRL': 'GBP',
+        'JPY-BRL': 'JPY',
+        'ZAR-BRL': 'ZAR',
+        'INR-BRL': 'INR',
+    };
 
-const taxasConversao = {
-    'Dólar Americano (USD)': 4.97,
-    'Dólar Australiano (AUD)': 3.25,
-    'Euro (EUR)': 5.35,
-    'Libra Egípcia (EGP)': 0.16,
-    'Libra Esterlina (GBP)': 6.34,
-    'Peso Colombiano (COP)': 0.0013,
-    'Rand Sul-Africano (ZAR)': 0.26,
-    'Rupia Indiana (INR)': 0.060,
-};
+    return mapaMoedas[moeda] || '';
+}
 
-function realizarConversao(valor, moeda) {
-    const taxa = taxasConversao[moeda];
+async function obterTaxaDaAPI(moeda) {
+    const codigoMoeda = obterCodigoDaMoeda(moeda);
+
+    console.log('Código da Moeda:', codigoMoeda);
+
+    const url = 'http://economia.awesomeapi.com.br/json/last/' + codigoMoeda + '-BRL';
+
+    console.log('URL da API:', url);
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            console.error('Erro na resposta da API. Status:', response.status);
+            return null;
+        }
+
+        const corpo = await response.json();
+
+        const precoMoeda = parseFloat(corpo[codigoMoeda + 'BRL'].bid).toFixed(2);
+        console.log('Preço da Moeda:', precoMoeda);
+        document.getElementById('cotacao').innerHTML = `1 ${codigoMoeda} equivale a R$ ${precoMoeda}`;
+
+        return precoMoeda;
+    } catch (error) {
+        console.error('Erro ao obter taxa da API:', error);
+        return null;
+    }
+}
+
+function realizarConversao(valor, taxa) {
     const descontoIOF = valor * 0.011;
     const valorComDesconto = valor - descontoIOF;
     const convertido = valorComDesconto / taxa;
-    
 
     return {
         convertido: convertido.toFixed(2),
@@ -56,3 +68,60 @@ function realizarConversao(valor, moeda) {
         valorComDesconto: valorComDesconto.toFixed(2),
     };
 }
+
+function adicionarTransacaoNoLocalStorage(transacao) {
+
+    // Adiciona a data atual à transação
+    transacao.data = new Date().toLocaleString();
+
+    // Recupera os dados existentes do localStorage
+    const dadosAntigos = JSON.parse(localStorage.getItem('transacoes')) || [];
+
+    // Adiciona a nova transação aos dados existentes
+    const novosDados = [...dadosAntigos, transacao];
+
+    // Armazena os dados atualizados no localStorage
+    localStorage.setItem('transacoes', JSON.stringify(novosDados));
+}
+
+async function converterMoeda() {
+    const valorElement = document.getElementById('valor');
+    const moedaElement = document.getElementById('moeda');
+    const resultadoElement = document.getElementById('resultado');
+
+    const valor = Number(valorElement.value) || 0;
+    const moeda = moedaElement.options[moedaElement.selectedIndex].value;
+
+    try {
+        const taxa = await obterTaxaDaAPI(moeda);
+
+        if (taxa === null) {
+            resultadoElement.textContent = 'Erro(s) ao obter taxa da API.';
+            return;
+        }
+
+        const { convertido, desconto, valorComDesconto } = realizarConversao(valor, taxa);
+
+        resultadoElement.textContent = `${convertido} (Desconto: R$ ${desconto}, Valor com Desconto: R$ ${valorComDesconto})`;
+
+        // Adiciona transação no localStorage
+        adicionarTransacaoNoLocalStorage({
+            descricao: "Conversão",
+            valor,
+            moeda,
+            convertido,
+            desconto,
+            valorComDesconto,
+        });
+        // Adiciona transação no extrato
+        //O ERRO ESTÁ AQUI -- se eu chamo a função a moeda não converte
+        //adicionarTransacaoNoExtrato("Conversão", valor, moeda, convertido, desconto, valorComDesconto, new Date().toLocaleString());
+    } catch (error) {
+        console.error('Erro ao converter moeda:', error);
+        resultadoElement.textContent = 'Erro ao converter moeda.';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('botaoConverter').addEventListener('click', converterMoeda);
+});

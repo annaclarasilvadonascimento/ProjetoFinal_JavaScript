@@ -46,7 +46,7 @@ function cadastrarUsuario() {
     mensagemErro.innerHTML = "Usuário cadastrado com sucesso.";
                   Swal.fire({
                     icon: "success",
-                    text: "Login realizado Com Sucesso",
+                    text: "Cadastro realizado Com Sucesso",
                     button: false,
                     timer: 2000, 
                 })   

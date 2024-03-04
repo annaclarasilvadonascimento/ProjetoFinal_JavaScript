@@ -1,206 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="Filmes online, Filmes em HD, Cinema em casa">
-    <link rel="favicon Icon" href="../assets/coderFavicon.ico">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!--<link rel="stylesheet" href="./assets/css/conversoes.css">-->
-    <link rel="stylesheet" href="./rascunho.css">
-    <script src="./assets/js/extrato.js" defer></script>
-    <title>CoderFlix</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Formulário Bootstrap</title>
 </head>
 
 <body>
-    <header id="header">
-        <div class="interface">
 
-            <div class="logo">
-                <a href="../index.html"><img src="" alt="logo CoderWise"></a>
-
-            </div> <!------- Logo ----->
-
-            <nav class="menu--desktop">
-                <ul>
-                    <li class="nav--itens">
-                        <a class="nav--link" href="../index.html">
-                            <i class="fa-solid fa-house"></i>
-                            Home
-                        </a>
-                    </li>
-                    <li class="nav--itens">
-                        <a class="nav--link nav--active" href="./filmes.html">
-                            <i class="bi bi-coin"></i>
-                            Conversão
-                        </a>
-                    </li>
-                    <li class="nav--itens">
-                        <a class="nav--link" href="./series.html">
-                            <i class="bi bi-tv-fill"></i>
-                            Extrato
-                        </a>
-                    </li>
-                    <li class="nav--itens">
-                        <a class="nav--link" href="./contatos.html">
-                            <i class="bi bi-chat-square-text-fill"></i>
-                            Transferência
-                        </a>
-                    </li>
-
-                </ul>
-            </nav> <!-------- Links de navegação entre as páginas ------->
-            <div class="btn--open" id="btn--open">
-                <i class="bi bi-list"></i>
-              </div>
-              <div class="menu--mobile" id="menu--mobile">
-                <div class="btn--close">
-                  <i class="bi bi-x-lg"></i>
-                </div>
-          
-                <nav>
-                  <ul>
-                    <li>
-                        <a href="./index.html">
-                          <div>Home <i class="fa-solid fa-house"></i></div>                    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./conversoes.html">
-                          <div>Filmes <i class="bi bi-camera-reels-fill"></i></div> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./extrato.html">
-                        <div>Séries <i class="bi bi-tv-fill"></i></div> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./transferencia.html">
-                        <div> Contato <i class="fa-solid fa-money-bill-transfer"></i></div>
-                        </a>
-                    </li>
-                </ul>
-                </nav>
-               
-              </div> <!-------- MENU MOBILE ------->
-              <div class="overlay--menu" id="overlay--menu"></div>
-
-
-        </div> <!----Interface ----->
-
-    </header>
-    <div id="myNav" class="overlay">
-
-        <!-- Button to close the overlay navigation -->
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      
-        <!-- Overlay content -->
-        <div class="overlay-content" id="overlay-content"></div>
-      
+  <div class="container mt-5">
+    <form>
+      <div class="mb-3">
+        <label for="inputTexto" class="form-label">Input de Texto:</label>
+        <input type="text" class="form-control" id="inputTexto" placeholder="Digite algo">
       </div>
-    <main>
-        <div id="converter">
-            <h2>Conversor de Moedas</h2>
-            
-            <label for="valor">Digite o valor em reais:</label>
-            <input type="number" id="valor" placeholder="Digite o valor" min="0" step="0.01">
-        
-            <label for="moeda">Escolha a moeda:</label>
-            <select class="selectpicker" id="moeda" name="iconesel" data-style="btn-primary">
-        
-                <!--COLOCAR OS NOMES DAS MOEDAS-->
-                <option value="">Selecione</option>
-                <option data-content="<img src='https://via.placeholder.com/20' class='img-thumbnail' width='20' height='20'> E-mail" value="fa-envelope">E-mail</option>
-                <option data-content="<img src='https://flagcdn.com/w80/za.png' class='img-thumbnail' width='40' height='40'> Telefone" value="AED-BRL">Valor de compra Dirham dos Emirados</option>
-                <option data-content="<img src='./assets/img/flags/Estados-unidos-US.png' class='img-thumbnail' width='40' height='60'> Telefone" value="fa-phone-square">Telefone</option>
-                <option value="AUD-BRL">Dólar Australiano</option>
-                <option value="EUR-BRL">Euro</option>
-                <option value="GBP-BRL">Libra Esterlina</option>
-                <option value="JPY-BRL">Yene Japonês</option>
-                <option value="ZAR-BRL">Rand Sul-Africano</option>
-                <option value="INR-BRL">Rupia Indiana</option>
-            
-            </select>
-        
-            <p id="cotacao"></p>
-        
-            <p id="resultado"></p>
-        
-            <button id="botaoConverter">Converter</button>
-            <p id="total"></p>
-        
-            <a href="extrato.html">Ver Extrato</a>
-        </div>
-        
-            
-            
-        
-        
 
-        
-    </main>
+      <div class="mb-3">
+        <label for="inputNumero" class="form-label">Input Numérico:</label>
+        <input type="number" class="form-control" id="inputNumero" placeholder="Digite um número" step="any">
+      </div>
 
-    <footer>
+      <div class="mb-3">
+        <label for="selectOpcoes" class="form-label">Select:</label>
+        <select class="form-select" id="selectOpcoes">
+          <option value="opcao1">Opção 1</option>
+          <option value="opcao2">Opção 2</option>
+          <option value="opcao3">Opção 3</option>
+        </select>
+      </div>
 
-        <div class="interface">
-            <div class="logo--footer">
+      <div class="mb-3">
+        <label for="textArea" class="form-label">Área de Texto:</label>
+        <textarea class="form-control" id="textArea" rows="4" placeholder="Digite seu texto aqui"></textarea>
+      </div>
 
-                <img src="../assets/img/coderwise.png" alt="logo coder wise">
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
 
-            </div> <!--------- Logo CoderFlix--------->
-
-            <div class="coders">
-
-                <div>
-                    <ul class="social">
-                        <li><span><strong>Anna</strong> Nascimento</span></li>
-                        <li>Front-end Developer</li>
-                        <li>
-                            <a href="https://github.com/Anna-csn" target="_blank">
-                                <i class="bi bi-github"></i>
-                            </a>
-
-                            <a href="https://www.linkedin.com/in/annaclaranascimento-ti/" target="_blank">
-                                <i class="bi bi-linkedin"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-            </div> <!----------  Informação dos codres Coders------------>
-        </div><!---------Interface-------------->
-        <div class="line--footer">
-            <div>
-                <strong><span>CODER</span>WISE</strong>
-                <i class="bi bi-cc-circle"></i>
-                <span>2024 - 2024</span>
-            </div>
-
-            <div>
-                <span class="text--small">Website created by  Anna Nascimento</span>
-                <i class="bi bi-cc-circle"></i>
-                <span>2024 Copyright</span>
-            </div>
-
-        </div> <!--------- última linha do footer  ---------->
-
-
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-pt_PT.min.js"></script>
-    
-    <script src="./assets/js/conversoes.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="./assets/js/extrato.js" defer></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -18,187 +18,102 @@
 
 
 <body>
-
-    <header id="header">
-        <div class="interface">
-
-            <div class="logo">
-                <a href="../index.html"><img src="#" alt="logo CoderWise"></a>
-
-            </div> <!------- Logo ----->
-
-            <nav class="menu--desktop">
-                <ul>
-                    <li class="nav--itens">
-                        <a class="nav--link" href="../index.html">
-                            <i class="fa-solid fa-house"></i>
-                            Home
-                        </a>
-                    </li>
-                    <li class="nav--itens">
-                        <a class="nav--link nav--active" href="./conversoes.html">
-                            <i class="bi bi-coin"></i>
-                            Conversão
-                        </a>
-                    </li>
-                    <li class="nav--itens">
-                        <a class="nav--link" href="./extrato.html">
-                            <i class="bi bi-tv-fill"></i>
-                            Extrato
-                        </a>
-                    </li>
-                    <li class="nav--itens">
-                        <a class="nav--link" href="./transferencia.html">
-                            <i class="bi bi-chat-square-text-fill"></i>
-                            Transferência
-                        </a>
-                    </li>
-
-                </ul>
-            </nav> <!-------- Links de navegação entre as páginas ------->
-            <div class="btn--open" id="btn--open">
-                <i class="bi bi-list"></i>
-              </div>
-              <div class="menu--mobile" id="menu--mobile">
-                <div class="btn--close">
-                  <i class="bi bi-x-lg"></i>
+    <header>
+        <div class="menu-desktop">
+            <div class="menu-left">
+                <!-- Barra de Navegação -->
+                <div class="logo">
+                    <img src="./assets/img/logoWise.png" alt="Logo da CoderWise">
+                    <i>CODERWISE</i>
                 </div>
-          
-                <nav>
-                  <ul>
-                    <li>
-                        <a href="./index.html">
-                          <div>Home <i class="fa-solid fa-house"></i></div>                    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./conversoes.html">
-                          <div>Conversão <i class="bi bi-camera-reels-fill"></i></div> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./extrato.html">
-                        <div>Extrato <i class="bi bi-tv-fill"></i></div> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./transferencia.html">
-                        <div> Transferência <i class="fa-solid fa-money-bill-transfer"></i></div>
-                        </a>
-                    </li>
-                </ul>
+
+                <nav class="menu-underline">
+                    <a href="./index.html"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="./conversoes.html"><i class="bi bi-coin"></i>Conversão</a>
+                    <a href="./extrato.html"><i class="bi bi-receipt"></i>Extrato</a>
+                    <a href="./transferencia.html"><i class="bi bi-send"></i> Transferência</a>
+                    <div class="underline"></div>
                 </nav>
-               
-              </div> <!-------- MENU MOBILE ------->
-              <div class="overlay--menu" id="overlay--menu"></div>
+            </div>
 
+            <div class="btn-sandwich">
+                <button onclick="menuShow()">
+                    <img class="icon" src="./assets/img/menu_green.svg" alt="botão de abrir menu">
+                </button>
+            </div>
+        </div>
+    </header>
 
-        </div> <!----Interface ----->
+    <div class="mobile-menu">
+        <nav>
+            <ul>
+                <li><a class="menu-btn" href="#">Pessoal</a></li>
+                <li><a class="" href="#">Empresa</a></li>
+            </ul>
+        </nav>
+    </div>
 
     </header>
-    <div id="myNav" class="overlay">
 
-        <!-- Button to close the overlay navigation -->
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      
-        <!-- Overlay content -->
-        <div class="overlay-content" id="overlay-content"></div>
-      
-      </div>
+    <main>
+        <h2>Transferência</h2>
+        <div id="conteudo">
+            <div id="saldos">Saldos:</div> 
+        <form>
+            <div class="login-form">
+                <div>
+                    <label for="destinatario">E-mail do Destinatário:</label>
+                    <input type="text" id="destinatario" placeholder="Digite o e-mail do destinatário">
+                </div>
+        
+                <div>
+                    <label for="valor">Valor a ser Transferido:</label>
+                    <input type="number" id="valor" placeholder="Digite o valor a ser transferido" min="0" step="0.01">
+                </div>
+            </div>
+        
+            
+            <div class="form-group">
+                <div>
+                    <label for="moeda">Moeda:</label>
+                    <select id="moeda">
+                        <option value="AED-BRL">Dirham dos Emirados</option>
+                        <option value="USD-BRL">Dólar Americano</option>
+                        <option value="AUD-BRL">Dólar Australiano</option>
+                        <option value="EUR-BRL">Euro</option>
+                        <option value="GBP-BRL">Libra Esterlina</option>
+                        <option value="JPY-BRL">Yene Japonês</option>
+                        <option value="ZAR-BRL">Rand Sul-Africano</option>
+                        <option value="INR-BRL">Rupia Indiana</option>
+                       
+                    </select>
+                </div>
+        
+                <div>
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" placeholder="Digite sua mensagem"></textarea>
+                </div>
+            </div>
+        
+            <button type="button" id="btn" onclick="realizarTransferencia()" >Enviar</button>
+        </form>
+            
+    </main>
 
-    <div id="conteudo">
-    <div id="saldos">Saldos:</div> 
-<form>
-    <div class="login-form">
+    <footer>
         <div>
-            <label for="destinatario">E-mail do Destinatário:</label>
-            <input type="text" id="destinatario" placeholder="Digite o e-mail do destinatário">
-        </div>
-
-        <div>
-            <label for="valor">Valor a ser Transferido:</label>
-            <input type="number" id="valor" placeholder="Digite o valor a ser transferido" min="0" step="0.01">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div>
-            <label for="moeda">Moeda:</label>
-            <select id="moeda">
-                <option value="AED-BRL">Dirham dos Emirados</option>
-                <option value="USD-BRL">Dólar Americano</option>
-                <option value="AUD-BRL">Dólar Australiano</option>
-                <option value="EUR-BRL">Euro</option>
-                <option value="GBP-BRL">Libra Esterlina</option>
-                <option value="JPY-BRL">Yene Japonês</option>
-                <option value="ZAR-BRL">Rand Sul-Africano</option>
-                <option value="INR-BRL">Rupia Indiana</option>
-               
-            </select>
-        </div>
-
-        <div>
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" placeholder="Digite sua mensagem"></textarea>
-        </div>
-    </div>
-
-    <button type="button" id="btn" onclick="realizarTransferencia()" >Enviar</button>
-</form>
-</div>
-
-    
-<footer>
-
-    <div class="interface">
-        <div class="logo--footer">
-
-            <img src="../assets/img/coderwise.png" alt="logo coder wise">
-
-        </div> <!--------- Logo CoderFlix--------->
-
-        <div class="coders">
+            <div>
+                <strong><span>CODER</span>WISE</strong>
+                <i class="bi bi-cc-circle"></i>
+                <span>2024 - 2024</span>
+            </div>
 
             <div>
-                <ul class="social">
-                    <li><span><strong>Anna</strong> Nascimento</span></li>
-                    <li>Front-end Developer</li>
-                    <li>
-                        <a href="https://github.com/Anna-csn" target="_blank">
-                            <i class="bi bi-github"></i>
-                        </a>
-
-                        <a href="https://www.linkedin.com/in/annaclaranascimento-ti/" target="_blank">
-                            <i class="bi bi-linkedin"></i>
-                        </a>
-                    </li>
-                </ul>
+                <span class="text--small">Website created by Anna Nascimento</span>
+                <i class="bi bi-cc-circle"></i>
+                <span>2024 Copyright</span>
             </div>
-            
-        </div> <!----------  Informação dos codres Coders------------>
-    </div><!---------Interface-------------->
-    <div class="line--footer">
-        <div>
-            <strong><span>CODER</span>WISE</strong>
-            <i class="bi bi-cc-circle"></i>
-            <span>2024 - 2024</span>
         </div>
-
-        <div>
-            <span class="text--small">Website created by  Anna Nascimento</span>
-            <i class="bi bi-cc-circle"></i>
-            <span>2024 Copyright</span>
-        </div>
-
-    </div> <!--------- última linha do footer  ---------->
-
-
-</footer>
-
-<!--Scripts do footer-->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="./assets/js/extrato.js" defer></script>
-
+    </footer>
 </body>
 </html>

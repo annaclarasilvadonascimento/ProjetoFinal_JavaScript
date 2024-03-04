@@ -16,6 +16,8 @@ document.getElementById("formLogin").addEventListener("submit", function(event) 
 
 
    if (usuarioEncontrado) {
+
+    
         loginMessage.innerHTML = "Login bem-sucedido!";
 
         loadingScreen.style.display = 'flex'; // Exibe a tela de carregamento
@@ -25,13 +27,28 @@ document.getElementById("formLogin").addEventListener("submit", function(event) 
         delay(2000) // Espera por 2 segundos
             .then(() => {
                 // Execute o código após o tempo de espera
-                loadingScreen.style.display = 'none'; // Esconde a tela de carregamento
-                loginMessage.innerHTML = "Bem-vindo!";
-               window.location.href ="conversoes.html"
+                  Swal.fire({
+                    icon: "success",
+                    text: "Login realizado Com Sucesso",
+                    button: false,
+                    timer: 5000, 
+                });
+                return delay(5000); // Aguarde o tempo de exibição da mensagem
+
+            })
+
+            .then(() =>{
+                    loadingScreen.style.display = 'none'; // Esconde a tela de carregament
+               window.location.href ='../conversoes.html';
                 
             });
    } else {
-        loginMessage.innerHTML = "Credenciais inválidas. Tente novamente.";
+                Swal.fire({
+                icon: "error",
+                text: "Credenciais inválidas.Tente novamente",
+                buttons: false,
+                timer: 5500, });
+        //loginMessage.innerHTML = "Credenciais inválidas. Tente novamente.";
     }
     
 });

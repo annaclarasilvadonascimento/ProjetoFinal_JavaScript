@@ -95,13 +95,25 @@ async function converterMoeda() {
     try {
         const taxa = await obterTaxaDaAPI(moeda);
 
+        
         if (taxa === null) {
-            resultadoElement.textContent = 'Erro(s) ao obter taxa da API.';
+            Swal.fire({
+                icon: "error",
+                title: "Não foi possível converter",
+                text: "Tente mais tarde",
+                buttons: false,
+                timer: 2500,
+              });
+            //resultadoElement.textContent = 'Não foi possível converter';
             return;
         }
 
         const { convertido, desconto, valorComDesconto } = realizarConversao(valor, taxa);
-
+        Swal.fire({
+            icon: "success",
+            text: "Conversão Realizada Com Sucesso",
+            timer: 2500,
+          });
         resultadoElement.textContent = `${convertido} (Desconto: R$ ${desconto}, Valor com Desconto: R$ ${valorComDesconto})`;
 
         // Adiciona transação no localStorage
@@ -113,9 +125,8 @@ async function converterMoeda() {
             desconto,
             valorComDesconto,
         });
-        // Adiciona transação no extrato
-        //O ERRO ESTÁ AQUI -- se eu chamo a função a moeda não converte
-        //adicionarTransacaoNoExtrato("Conversão", valor, moeda, convertido, desconto, valorComDesconto, new Date().toLocaleString());
+        
+        
     } catch (error) {
         console.error('Erro ao converter moeda:', error);
         resultadoElement.textContent = 'Erro ao converter moeda.';

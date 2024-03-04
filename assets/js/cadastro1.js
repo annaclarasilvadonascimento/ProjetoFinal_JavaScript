@@ -9,6 +9,11 @@ function cadastrarUsuario() {
 
     if (idade < 18) {
         mensagemErro.innerHTML = "Idade não suficiente. Você deve ter pelo menos 18 anos. <a href=' index.html'>Clique aqui</a>";
+        Swal.fire({
+            icon: "error",
+            text: "Idade não suficiente, é preciso ter pelo menos 18 anos para se cadastrar",
+            buttons: false,
+            timer: 5500, });
         document.getElementById("nome").disabled = true;
         document.getElementById("idade").disabled = true;
         document.getElementById("email").disabled = true;
@@ -16,11 +21,18 @@ function cadastrarUsuario() {
         return;
     }
 
-        
+         
     let usuariosCadastrados = JSON.parse(localStorage.getItem('usuarios')) || [];
 
     // Verifica se o usuário já está cadastrado
     if (usuariosCadastrados.some(usuario => usuario.email === email)) {
+        Swal.fire({
+            position: "center",
+            icon: "warning",
+            title: "Usuário já cadastrado ",
+            showConfirmButton: false,
+            timer: 1500
+          });
         mensagemErro.innerHTML = "Usuário já cadastrado.";
         return;
     }
@@ -32,8 +44,12 @@ function cadastrarUsuario() {
     localStorage.setItem('usuarios', JSON.stringify(usuariosCadastrados));
 
     mensagemErro.innerHTML = "Usuário cadastrado com sucesso.";
-    console.log("Usuário cadastrado com sucesso!");
-
+                  Swal.fire({
+                    icon: "success",
+                    text: "Login realizado Com Sucesso",
+                    button: false,
+                    timer: 2000, 
+                })   
 }
 
 // Adiciona o ouvinte de evento submit
@@ -43,3 +59,5 @@ document.getElementById("registerForm").addEventListener("submit", function(even
     // Chama a função cadastrarUsuario dentro do evento submit
     cadastrarUsuario();
 });
+
+            

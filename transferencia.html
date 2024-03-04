@@ -1,37 +1,204 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src ="extrato.js"></script>
-    <script src="transferencia.js"></script>
+    <link rel="stylesheet" type="text/css" href="./assets/css/transferencia.css">
+    <link rel="icon" href="../ProjetoFinal_JavaScript/assets/img/wiseFavion.ico">
+    <script src ="./assets/js/extrato.js"></script>
+    <script src="./assets/js/transferencia.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Simulação de Transferência</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="favicon Icon" href="../assets/coderFavicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Transferência</title>
 </head>
+
+
 <body>
-    <h1>Simulação de Transferência</h1>
 
-    <label for="destinatario">E-mail do Destinatário:</label>
-    <input type="text" id="destinatario" placeholder="Digite o e-mail do destinatário">
+    <header id="header">
+        <div class="interface">
 
-    <label for="valor">Valor a ser Transferido:</label>
-    <input type="number" id="valor"  placeholder="Digite o valor a ser transferido" min="0" step="0.01">
+            <div class="logo">
+                <a href="../index.html"><img src="#" alt="logo CoderWise"></a>
 
-    <label for="moeda">Moeda:</label>
-    <select id="moeda">
-        <option value="AED-BRL">Valor de compra Dirham dos Emirados</option>
-        <option value="USD-BRL">Valor de compra do Dolar</option>
-        <option value="AUD-BRL">Valor de compra do Dolar</option>
-        <option value="EUR-BRL">Valor de compra do Euro</option>
-        <option value="GBP-BRL">Valor de compra Libra Esterlina</option>
-        <option value="JPY-BRL">Valor de compra Yene Japonês</option>
-        <option value="ZAR-BRL">Valor de compra Rand Sul-Africano</option>
-        <option value="INR-BRL">Valor de compra Rupia Indiana</option>
-        <!-- Adicione mais opções de moeda conforme necessário -->
-    </select>
+            </div> <!------- Logo ----->
 
-    <p id="saldos">Saldos:</p>
-</p>    <button onclick="realizarTransferencia()">Transferir</button>
+            <nav class="menu--desktop">
+                <ul>
+                    <li class="nav--itens">
+                        <a class="nav--link" href="../index.html">
+                            <i class="fa-solid fa-house"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav--itens">
+                        <a class="nav--link nav--active" href="./conversoes.html">
+                            <i class="bi bi-coin"></i>
+                            Conversão
+                        </a>
+                    </li>
+                    <li class="nav--itens">
+                        <a class="nav--link" href="./extrato.html">
+                            <i class="bi bi-tv-fill"></i>
+                            Extrato
+                        </a>
+                    </li>
+                    <li class="nav--itens">
+                        <a class="nav--link" href="./transferencia.html">
+                            <i class="bi bi-chat-square-text-fill"></i>
+                            Transferência
+                        </a>
+                    </li>
+
+                </ul>
+            </nav> <!-------- Links de navegação entre as páginas ------->
+            <div class="btn--open" id="btn--open">
+                <i class="bi bi-list"></i>
+              </div>
+              <div class="menu--mobile" id="menu--mobile">
+                <div class="btn--close">
+                  <i class="bi bi-x-lg"></i>
+                </div>
+          
+                <nav>
+                  <ul>
+                    <li>
+                        <a href="./index.html">
+                          <div>Home <i class="fa-solid fa-house"></i></div>                    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./conversoes.html">
+                          <div>Conversão <i class="bi bi-camera-reels-fill"></i></div> 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./extrato.html">
+                        <div>Extrato <i class="bi bi-tv-fill"></i></div> 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./transferencia.html">
+                        <div> Transferência <i class="fa-solid fa-money-bill-transfer"></i></div>
+                        </a>
+                    </li>
+                </ul>
+                </nav>
+               
+              </div> <!-------- MENU MOBILE ------->
+              <div class="overlay--menu" id="overlay--menu"></div>
+
+
+        </div> <!----Interface ----->
+
+    </header>
+    <div id="myNav" class="overlay">
+
+        <!-- Button to close the overlay navigation -->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      
+        <!-- Overlay content -->
+        <div class="overlay-content" id="overlay-content"></div>
+      
+      </div>
+
+    <div id="conteudo">
+    <div id="saldos">Saldos:</div> 
+<form>
+    <div class="login-form">
+        <div>
+            <label for="destinatario">E-mail do Destinatário:</label>
+            <input type="text" id="destinatario" placeholder="Digite o e-mail do destinatário">
+        </div>
+
+        <div>
+            <label for="valor">Valor a ser Transferido:</label>
+            <input type="number" id="valor" placeholder="Digite o valor a ser transferido" min="0" step="0.01">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label for="moeda">Moeda:</label>
+            <select id="moeda">
+                <option value="AED-BRL">Dirham dos Emirados</option>
+                <option value="USD-BRL">Dólar Americano</option>
+                <option value="AUD-BRL">Dólar Australiano</option>
+                <option value="EUR-BRL">Euro</option>
+                <option value="GBP-BRL">Libra Esterlina</option>
+                <option value="JPY-BRL">Yene Japonês</option>
+                <option value="ZAR-BRL">Rand Sul-Africano</option>
+                <option value="INR-BRL">Rupia Indiana</option>
+               
+            </select>
+        </div>
+
+        <div>
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" placeholder="Digite sua mensagem"></textarea>
+        </div>
+    </div>
+
+    <button type="button" id="btn" onclick="realizarTransferencia()" >Enviar</button>
+</form>
+</div>
 
     
+<footer>
+
+    <div class="interface">
+        <div class="logo--footer">
+
+            <img src="../assets/img/coderwise.png" alt="logo coder wise">
+
+        </div> <!--------- Logo CoderFlix--------->
+
+        <div class="coders">
+
+            <div>
+                <ul class="social">
+                    <li><span><strong>Anna</strong> Nascimento</span></li>
+                    <li>Front-end Developer</li>
+                    <li>
+                        <a href="https://github.com/Anna-csn" target="_blank">
+                            <i class="bi bi-github"></i>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/annaclaranascimento-ti/" target="_blank">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div> <!----------  Informação dos codres Coders------------>
+    </div><!---------Interface-------------->
+    <div class="line--footer">
+        <div>
+            <strong><span>CODER</span>WISE</strong>
+            <i class="bi bi-cc-circle"></i>
+            <span>2024 - 2024</span>
+        </div>
+
+        <div>
+            <span class="text--small">Website created by  Anna Nascimento</span>
+            <i class="bi bi-cc-circle"></i>
+            <span>2024 Copyright</span>
+        </div>
+
+    </div> <!--------- última linha do footer  ---------->
+
+
+</footer>
+
+<!--Scripts do footer-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="./assets/js/extrato.js" defer></script>
+
 </body>
 </html>

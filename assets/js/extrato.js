@@ -1,9 +1,7 @@
-// Extrato.js
-
- class Extrato {
+class Extrato {
     constructor() {
         this.transacoes = [];
-        this.saldos = {};
+        this.saldos = JSON.parse(localStorage.getItem('saldos')) || {};
     }
 
     adicionarTransacao(descricao, valor, moeda, convertido, desconto, valorComDesconto, data) {
@@ -17,16 +15,16 @@
             data,
         };
 
-        // Adiciona a transação no array de transações
         this.transacoes.push(transacao);
 
-        // Atualiza o saldo da moeda
         if (!this.saldos.hasOwnProperty(moeda)) {
             this.saldos[moeda] = 0;
         }
         this.saldos[moeda] += Number(transacao.convertido);
 
-        // Atualiza o extrato na interface
+        // Salvar os saldos no localStorage
+        localStorage.setItem('saldos', JSON.stringify(this.saldos));
+
         atualizarExtrato();
     }
 
@@ -34,7 +32,6 @@
         return this.transacoes;
     }
 }
-
 const extrato = new Extrato();
 
 function adicionarTransacaoNoExtrato(descricao, valor, moeda, convertido, desconto, valorComDesconto, data) {
@@ -45,44 +42,70 @@ function atualizarExtrato() {
     const extratoElement = document.getElementById('extrato');
     if (extratoElement) {
         extratoElement.innerHTML = '';
-    
 
-    extrato.gerarExtrato().forEach((transacao) => {
-        const linha = document.createElement('li');
-        linha.textContent = `${transacao.descricao}: ${transacao.valor} ${transacao.moeda} - Convertido: ${transacao.convertido}, Desconto: R$ ${transacao.desconto}, Valor com Desconto: R$ ${transacao.valorComDesconto} - ${transacao.data}`;
-        //linha.style.listStyleImage = 'url(./convert-icon.png)';
-        //linha.style.backgroundSize = '1px';
-        extratoElement.appendChild(linha);
-       
-    });
-}
+        extrato.gerarExtrato().forEach((transacao) => {
+            const listaItem = document.createElement('li');
+            listaItem.className = 'list-group-item d-flex align-items-center';
 
-    // Atualiza os saldos
-    atualizarSaldos();
+            const iconeMarcador = document.createElement('span');
+            iconeMarcador.className = 'fa-solid fa-money-bill-transfer mr-2';
+
+            listaItem.appendChild(iconeMarcador);
+
+            const textoTransacao = document.createElement('div');
+            textoTransacao.textContent = `${transacao.descricao}: ${transacao.valor} ${transacao.moeda} \n Valor Convertido: ${transacao.convertido}, Taxa de conversão: R$ ${transacao.desconto}, Valor informado com Desconto: R$ ${transacao.valorComDesconto} - ${transacao.data}`;
+
+            listaItem.appendChild(textoTransacao);
+
+            extratoElement.appendChild(listaItem);
+        });
+
+        atualizarSaldos();
+    }
 }
 
 function atualizarSaldos() {
+    console.log('Chamando atualizarSaldos');
     const saldosElement = document.getElementById('saldos');
-    //if (!saldosElement) {
-    //    console.error('Elemento com ID "saldos" não encontrado.');
-    //    return;
-    //} TIRAR - ISSO É SÓ VALIDAÇÃO DE TESTE
+
+    if (!saldosElement) {
+        console.error('Elemento com ID "saldos" não encontrado.');
+        return;
+    }
 
     saldosElement.innerHTML = '';
-    for (const moeda in extrato.saldos) {
-        const saldoLinha = document.createElement('li');
-        saldoLinha.textContent = `Saldo ${moeda}: ${extrato.saldos[moeda].toFixed(2)}`;
-        saldosElement.appendChild(saldoLinha);
+
+    if (!extrato || !extrato.saldos) {
+        console.error('extrato ou extrato.saldos não estão definidos ou são inválidos.');
+        return;
     }
-    //nova linha que inclui para fazer a pagina de transferência
-    localStorage.setItem('saldos', JSON.stringify(extrato.saldos));
+
+    for (const moeda in extrato.saldos) {
+        const saldoCard = document.createElement('div');
+        saldoCard.className = 'card card-saldo mb-3';
+
+        const saldoCardBody = document.createElement('div');
+        saldoCardBody.className = 'card-body';
+
+        const saldoTitulo = document.createElement('h3');
+        saldoTitulo.className = 'card-title';
+        saldoTitulo.textContent = `Saldo ${moeda}`;
+
+        const saldoTexto = document.createElement('p');
+        saldoTexto.className = 'card-text';
+        saldoTexto.textContent = `${extrato.saldos[moeda].toFixed(2)}`;
+
+        saldoCardBody.appendChild(saldoTitulo);
+        saldoCardBody.appendChild(saldoTexto);
+
+        saldoCard.appendChild(saldoCardBody);
+        saldosElement.appendChild(saldoCard);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Carrega as transações do localStorage
     const transacoesDoLocalStorage = JSON.parse(localStorage.getItem('transacoes')) || [];
 
-    // Adiciona as transações do localStorage ao extrato
     transacoesDoLocalStorage.forEach((transacao) => {
         extrato.adicionarTransacao(
             transacao.descricao,
@@ -95,8 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
         );
     });
 
-    // Atualiza o extrato ao carregar a página
     atualizarExtrato();
 });
 
-
+// Nova linha que inclui para fazer a página de transferência
+localStorage.setItem('saldos', JSON.stringify(extrato.saldos));

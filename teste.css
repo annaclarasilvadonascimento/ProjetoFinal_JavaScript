@@ -1,20 +1,19 @@
-
 @import url('https://fonts.cdnfonts.com/css/wise');
 
-/* Estilo Geral */
+/* ESTILO GERAL */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-:root {
+  }
+  
+  :root{
     font-size: 62.5%;
     --green-gradient: linear-gradient(180deg, #278848 0%, #59a928 100%);
     --white: #fff;
     --gray-400: #e8ebe6;
     --gray-100: #fafafa;
-    --green-light: #9fe870;
+    --green-ligth: #9fe870;
     --green-hover: #c1f1a3;
     --blue-light: #A0E1E1;
     --blue-transparent: #16330014;
@@ -25,70 +24,65 @@
     --dove-gray-900: #3d3d3d;
     --font-primary: 'WISE', sans-serif;
     --font-secondary: 'Poppins', sans-serif;
-}
-
-body {
-    font-family: var(--font-secondary);
-    font-size: 16px; /* Ajuste conforme necessário */
+  }
+  
+  body{
+    background-color: var(--gray-100);
     height: 100vh;
-}
-
-.interface {
-    padding: 2.5rem 4%;
-}
-
-/* Navbar */
-header {
+    padding-top: 7rem;
+  }
+  .interface{
+    padding: 2.5rem 4% ;
+    
+  }
+  
+  
+  /*  NAVBAR */
+  
+  header{
     width: 100%;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    position: static;
+    position: fixed;
     height: 7rem;
     z-index: 99997;
     top: 0;
     left: 0;
     transition: .5s;
     background-color: #163300;
-}
-
-header.rolagem {
+  }
+  header.rolagem {
     background-color: #212121;
     box-shadow: 0px 2px 10px #070707;
-}
-
-header > .interface {
+    
+  }
+  header > .interface{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2rem 4%;       
-}
-
-.logo img {
+  }
+  .logo img{
     width: 25rem;   
-}
-
-.menu--desktop ul {
-    display: flex;
-    list-style: none;  
-}
-
-.nav--itens {        
+  }
+  .menu--desktop ul{
+    display:flex ;
+     list-style: none;  
+  }
+  .nav--itens{        
     padding: 0rem 2.4rem;
-}
-
-.nav--link {
+  }
+  .nav--link{
     text-decoration: none;
     color: #989696;       
     font-size: 1.5rem;
     text-transform: uppercase;
     position: relative;     
-}
-
-.nav--link:hover {
+  }
+  .nav--link:hover{
     color: #fff;
-}
-
-.nav--link::after {
+  }
+  .nav--link::after{
     content: " ";
     width: 0;
     height: 0.3rem;
@@ -98,18 +92,16 @@ header > .interface {
     left: 30px;
     border-radius: 3.1rem;
     transition: width 0.5s  ;
-}
-
-.nav--link:hover::after {
+  }
+  .nav--link:hover::after{
     width: 65%;
-}
-
-.nav--active {
+  }
+  .nav--active{
     color: #fff;
     position: relative;
-}
-
-.nav--active::after {
+    
+  }
+  .nav--active::after{
     content: " ";
     width: 65%;
     height: 0.3rem;
@@ -118,167 +110,13 @@ header > .interface {
     top: 2.4rem;
     left: 30px;
     border-radius: 3.1rem;
-}
-
-.nav--link i {
+   
+  }
+  .nav--link i{
     font-size: 1.5rem;
     margin-right: 0.8rem;
-}
-
-/* Conversão */
-#converter {
-    text-align: center;
-    max-width: 300px;
-    margin: auto;
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-#converter h2 {
-    color: #3498db;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.flex-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.moeda-container,
-.valor-container {
-    flex: 0 0 48%;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 18px;
-}
-
-#moeda,
-#valor {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 10px;
-    background-color: #ecf0f1;
-    outline: none;
-}
-
-#moeda:focus,
-#valor:focus {
-    background-color: #d5d8dc;
-}
-
-.selectpicker option:checked {
-    background-color: #3498db !important;
-    color: #fff;
-}
-
-button,
-.btn {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #163300;
-    border: none;
-    border-radius: 10px;
-    color: #fff;
-    cursor: pointer;
-}
-
-a {
-    display: block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #3498db;
-    font-size: 16px;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #2980b9;
-}
-
-/* Menu Mobile */
-.btn--open {
-    display: none;
-}
-
-.btn--open i {
-    color: #59a928;
-    font-size: 40px;
-}
-
-.btn--close {
-    padding: 20px 5%;
-}
-
-.btn--close i {
-    font-size: 30px;
-    color: #59a928;
-}
-
-.menu--mobile {
-    display: none;
-    background-color: #212121;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 99999;
-    width: 0%;
-    overflow: hidden;
-    transition: .2s;
-}
-
-.menu--mobile.open--menu {
-    width: 70%;
-}
-
-.menu--mobile.open--menu ~ .overlay--menu {
-    display: block;
-}
-
-.menu--mobile nav ul {
-    text-align: right;
-}
-
-.menu--mobile nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: 400;
-    text-transform: uppercase;
-    display: block;
-    padding: 30px 8%;
-}
-
-.menu--mobile nav ul li a:hover {
-    background-color: #59a928;
-    color: #000;
-}
-
-.menu--mobile nav ul li a i {
-    margin-left: 1.3rem; 
-}
-
-.overlay--menu {
-    display: none;
-    background-color: #000000b8;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99998;
-}
-
-
-
+  
+  }
   
   /* MENU MOBILE */
   
@@ -352,7 +190,46 @@ a:hover {
   main > .interface{
     padding: 2.5rem 4% ;
     }
-
+  .search-box{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 2.5rem 4%;
+    margin-top: 5rem;
+  }
+  .search-txt{
+    font-size: 16px;
+    border-radius: 40px;
+    border: none;
+    padding: 7px 10px;
+    outline: 0;
+    width: 100%;
+    max-width: 250px;
+    background-color: #464646;
+    color: #fff;
+  }
+  .search-btn{
+    display: flex;
+    height: 30px;
+    width: 30px;
+    border: none;
+    border-radius: 50%;
+    padding: 8px;
+    background-color: #59A928;
+    color: #fff;
+    margin-left: -30px;
+    cursor: pointer;
+    align-items: center;
+    transition: .3s;
+  }
+  .search-box:hover >.search-btn{
+    color: #59A928;
+    background-color: #fff;
+    transform: rotate(-290deg);
+  }
+  input::placeholder{
+    color: #ffffff80;
+  }
   h2.title{
     color: var(--dove-gray-900);
     font-size: 3.2rem;
@@ -364,7 +241,6 @@ a:hover {
   h2.title span{
     position: absolute;
   }
-  
   h2.title span::after{
     content: " ";
     width: 100px;
@@ -544,29 +420,37 @@ a:hover {
     
     /* Main */
 
-    body {
-        background-color: #ffffff;
-        font-family: Arial, sans-serif;
-      }
-      
-      .form-container {
-        background-color: linear-gradient(#c0c0c0, #404040);
-      }
-      
-      .form-input,
-      .form-button {
-        border-radius: 5px;
-      }
-      
-      .form-button {
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-      }
-      
-      .form-button {
-        color: #ffffff;
-      }
-      
     
+#saldos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* ou 'space-between', dependendo do efeito desejado */
+  }
+  
+  .card-saldo {
+    flex: 1;
+    min-width: 200px; /* Defina um tamanho mínimo se necessário */
+    max-width: 30%; /* Ajuste conforme necessário */
+    margin: 10px;
+    box-sizing: border-box;
+    border-radius: 10px; /* Adiciona bordas arredondadas */
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse as bordas arredondadas */
+  }
+  
+  /* Adicione estilos para o conteúdo dentro dos cards */
+  .card-saldo .card-body {
+    padding: 15px;
+  }
+  
+  /* Adicione estilos para a descrição no card */
+  .card-saldo .descricao-saldo {
+    font-weight: bold;
+  }
+  
+  /* Adicione estilos para os valores no card */
+  .card-saldo .valor-saldo {
+    font-size: 1.2em;
+  }
     .coders{
         flex-wrap: wrap;
     }
@@ -604,7 +488,61 @@ a:hover {
       justify-content: center;
     }
   }
+  /* The Overlay (background) */
+  .overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */   
+    height: 100%;
+    width: 0;
+    position: fixed; /* Stay in place */
+    z-index: 1111111; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0); /* Black fallback color */
+    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  }
   
+  /* Position the content inside the overlay */
+  .overlay-content {
+    position: relative;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  }
+  
+  /* The navigation links inside the overlay */
+  .overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block; /* Display block instead of inline */
+    transition: 0.3s; /* Transition effects on hover (color) */
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+  }
+  
+  /* Position the close button (top right corner) */
+  .overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    color: #fff;
+  }
+  .overlay .closebtn:hover{
+    color: #59a928;
+  }
+  .no-results{
+    font-size: 36px;
+    color: #fff;
+    font-weight: bold;
+  }
   /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
   @media screen and (max-height: 450px) {
     .overlay a {font-size: 20px}
@@ -612,40 +550,5 @@ a:hover {
       font-size: 40px;
       top: 15px;
       right: 35px;
-    }
-  }
-
-  
-
-
-
-  
-  /* BARRA ROLAGHEM*/
-  /*
-  ::-webkit-scrollbar-track{
-    background-color: #232c3b;
-  }
-  ::-webkit-scrollbar{
-    width: 6px;
-    background: #f4f4f4;
-  }
-  ::-webkit-scrollbar-thumb{
-    background-color: #59a928;
-    border-radius: 5px;
-  }
-  */
-  /* RESPONSIVO*/
-  
-  @media screen and (max-width: 920px){
-    
-    header > .interface {
-      padding: 1rem 4%;
-    }
-    .menu--desktop{
-      padding: 1.5rem 4%;
-        
-    }
-    .nav--itens{
-      display: none;
     }
   }

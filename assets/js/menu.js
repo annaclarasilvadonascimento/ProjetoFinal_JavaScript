@@ -1,5 +1,5 @@
 
-function menuShow() {
+ function menuShow() {
     let menuMobile = document.querySelector('.mobile-menu');
     if (menuMobile.classList.contains('open-menu')) {
         menuMobile.classList.remove('open-menu');

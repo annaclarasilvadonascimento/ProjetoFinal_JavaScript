@@ -39,7 +39,7 @@ document.getElementById("formLogin").addEventListener("submit", function(event) 
 
             .then(() =>{
                     loadingScreen.style.display = 'none'; // Esconde a tela de carregament
-               window.location.href ='../conversoes.html';
+               window.location.href ='conversoes.html';
                 
             });
    } else {
